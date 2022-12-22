@@ -4,5 +4,6 @@ from django.urls import path
 from todoAPI import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add/', views.CreateTodoView.as_view(), name='add')
+    path('add/', views.CreateTodoView.as_view(), name='add'),
+    path('get/', views.GetAllTodoView.as_view(), name='get')
 ]
