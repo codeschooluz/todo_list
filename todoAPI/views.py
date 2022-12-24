@@ -29,6 +29,10 @@ class GetAllTodoView(APIView):
 # Remove todo task by id
 class RemoveTodoView(APIView):
     def get(self, request, id):
-        todo = Todo.objects.get(id=id)
-        todo.delete()
-        return Response(status=status.HTTP_200_OK)
+        # Check if todo task exists
+        try:
+            todo = Todo.objects.get(id=id)
+            todo.delete()        
+            return Response(status=status.HTTP_200_OK)
+        except Todo.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
