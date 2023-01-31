@@ -23,6 +23,7 @@ class CreateTodoView(APIView):
 class GetAllTodoView(APIView):
     permission_classes = (IsAuthenticated,)
     def get(self, request):
+        user=request.user
         todos = Todo.objects.all()
         serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
